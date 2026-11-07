@@ -1,6 +1,45 @@
 {
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": "explicit"
+    }
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSave": true
-  }
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "terraform.languageServer.enable": true,
+  "terraform.validation.enableEnhancedValidation": true,
+  "terraform.experimentalFeatures.validateOnSave": true,
+  "terraform.experimentalFeatures.prefillRequiredFields": true,
+  "files.associations": {
+    "*.tfvars.example": "terraform-vars"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.terraform/**": true
+  },
+  "search.exclude": {
+    "**/.terraform": true,
+    "**/*.tfstate*": true
+  },
+  "errorLens.delay": 300,
+  "cSpell.words": [
+    "tflint",
+    "tfvars",
+    "tfstate",
+    "tfplan",
+    "chdir",
+    "trivy",
+    "infracost",
+    "checkov",
+    "hashicorp"
+  ]
 }

@@ -1,0 +1,40 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  # Hooks locales: llaman directo a los binarios, sin depender de bash (Windows).
+  - repo: local
+    hooks:
+      - id: terraform-fmt
+        name: terraform fmt
+        entry: terraform fmt -recursive
+        language: system
+        files: \.(tf|tfvars)$
+        pass_filenames: false
+
+      - id: terraform-validate
+        name: terraform validate
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate.ps1
+        language: system
+        files: \.(tf|tfvars)$
+        pass_filenames: false
+
+      - id: tflint
+        name: tflint
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tflint.ps1
+        language: system
+        files: \.tf$
+        pass_filenames: false
+
+      - id: trivy
+        name: trivy config (HIGH,CRITICAL)
+        entry: trivy config --severity HIGH,CRITICAL --exit-code 1 --quiet .
+        language: system
+        files: \.(tf|tfvars)$
+        pass_filenames: false
