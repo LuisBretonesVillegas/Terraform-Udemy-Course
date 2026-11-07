@@ -28,8 +28,8 @@ This is the first step of my certification plan (Terraform, CCNA, Kubernetes), a
 | 17      | Exam Prep Essentials: What to Know for Each Objective        | ⬜      |
 
 > ✅ Done / 🔄 In progress / ⬜ Not started
-
-The course also has a practice exam section and a one-minute section, which are not tracked here.
+<
+The course also has a practice exam section and a one-minute section, which are not tracked here.>
 
 ## Setup
 
@@ -39,17 +39,33 @@ Starter Terraform template for AWS. It declares no resources, so it creates no i
 - The official HashiCorp Terraform extension for VS Code
 - AWS credentials configured outside Terraform
 
-1. Copy `terraform.tfvars.example` to `terraform.tfvars` and adjust `aws_region`.
+## Project layout
+
+```
+environments/
+  dev/            # one folder = one deployment = one state
+modules/          # reusable modules (no providers, no backend)
+scripts/          # helpers used by the pre-commit hooks
+.tflint.hcl       # linter config
+.pre-commit-config.yaml
+```
+
+1. Copy `environments/dev/terraform.tfvars.example` to `environments/dev/terraform.tfvars` and adjust `aws_region`.
 2. Configure your credentials through the AWS CLI (`aws configure` or a profile) or AWS-compatible environment variables. Never store credentials in `.tf` files.
-3. Initialize and validate the project:
+3. Initialize and validate the environment:
 
    ```powershell
-   terraform init
-   terraform fmt -check
-   terraform validate
+   terraform -chdir=environments/dev init
+   terraform -chdir=environments/dev validate
    ```
 
-`terraform.tfvars` and the local state are excluded from Git. The `.terraform.lock.hcl` file is kept in version control to pin provider versions.
+4. Enable the pre-commit hooks (fmt, validate, tflint, trivy) once per clone:
+
+   ```powershell
+   pre-commit install
+   ```
+
+`terraform.tfvars` and the local state are excluded from Git. Each environment's `.terraform.lock.hcl` is kept in version control to pin provider versions.
 
 ## Updating progress
 
