@@ -5,14 +5,14 @@ This is the first step of my certification plan (Terraform, CCNA, Kubernetes), a
 
 ## Progress
 
-**2 / 17 sections completed**
+**3 / 17 sections completed**
 
 | Section | Topic                                                        | Status |
 |---------|--------------------------------------------------------------|--------|
 | 1       | Introduction                                                 | ✅      |
 | 2       | Preparing Your Environment                                   | ✅      |
-| 3       | Terraform Foundations                                        | 🔄      |
-| 4       | The Core Terraform Workflow                                  | ⬜      |
+| 3       | Terraform Foundations                                        | ✅      |
+| 4       | The Core Terraform Workflow                                  | 🔄      |
 | 5       | Terraform CLI                                                | ⬜      |
 | 6       | Terraform File Structure and Organization                    | ⬜      |
 | 7       | Terraform Configuration - Fundamentals                       | ⬜      |
